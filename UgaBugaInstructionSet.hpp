@@ -37,13 +37,12 @@ public:
 		delete instructions["BugaBuga"];
 	}
 
-	UgaBugaInstruction* getInstruction(string key) {
+	UgaBugaInstruction* getInstruction(string& key) {
 		auto it = instructions.find(key);
 		if(it != instructions.end()) {
 			return it->second;
 		}
-		string errorInfo = "Instruction not found.";
-		throw errorInfo;
+		throw exception();
 	}
 };
 

@@ -22,7 +22,7 @@ class UgaBugaInterpreter {
 	vector<string> code;
 
 public:
-	UgaBugaInterpreter(string code) {
+	UgaBugaInterpreter(string& code) {
 		this->code = split(code, ' ');
 	}
 
@@ -30,11 +30,11 @@ public:
 		unsigned char R0 = 0;
 		UgaBugaInstructionSet* instructions = new UgaBugaInstructionSet();
 
-		for(const auto instruction : code) {
+		for(auto instruction : code) {
 			try {
 				auto instructionHandler = instructions->getInstruction(instruction);
 				instructionHandler->doJob(R0);
-			} catch(string uselessErroInfo) {
+			} catch(exception& uselessErroInfo) {
 				;
 			}
 		}
